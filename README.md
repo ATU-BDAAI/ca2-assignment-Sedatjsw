@@ -7,39 +7,61 @@ This project presents a document processing pipeline that combines Computer Visi
 The aim of this project is to explore how different techniques can be combined into a single pipeline to process and understand document images.
 
 The system works on a small set of documents with different structures:
-- Academic poster
-- Booking confirmation form
-- Financial documents (invoice and statement)
-- Pharmacy receipt
+
+- Academic poster  
+- Booking confirmation form  
+- Financial documents (invoice and statement)  
+- Pharmacy receipt  
 
 Each document is processed using the same pipeline, allowing comparison of how different document types behave under identical processing steps.
+
+---
 
 ## Pipeline
 
 The pipeline is designed as a multi-modal system:
 
-1. Image preprocessing using OpenCV  
-   - grayscale conversion  
-   - thresholding techniques  
-   - specific adjustments for difficult images (receipt)
+### Image preprocessing (OpenCV)
+- grayscale conversion  
+- thresholding techniques  
+- noise reduction  
+- specific adjustments for difficult images (e.g. receipt)  
 
-2. OCR text extraction using Tesseract  
+### OCR text extraction (Tesseract)
 
-3. Text preprocessing  
-   - cleaning  
-   - tokenisation  
-   - stopword removal  
-   - lemmatisation  
+### Text preprocessing
+- cleaning  
+- tokenisation  
+- stopword removal  
+- lemmatisation  
 
-4. TF-IDF feature extraction  
+### Text feature extraction
+- TF-IDF  
+- key phrase extraction  
 
-5. Rule-based document classification  
+### Named Entity Recognition
+- rule-based extraction (dates, monetary values, phone numbers, names)  
+- spaCy-based NER (organisations, people, locations, dates, monetary values)  
 
-6. Visual feature detection  
-   - contour detection  
-   - identification of layout regions  
+### Document classification
+- rule-based classification based on extracted features  
 
-7. Final multi-modal summary combining all outputs  
+### Visual feature detection
+- contour detection  
+- identification of layout regions  
+- structured region detection (tables, forms, invoice and receipt sections)  
+
+### Image segmentation
+- segmentation of documents into meaningful regions  
+- grouping text blocks, tables and visual components  
+
+### Multi-modal integration
+- combining OCR text, NLP features, named entities, visual regions and segmentation results  
+
+### Final output
+- structured table summarising text, entities, visual features and document insights  
+
+---
 
 ## Key Observations
 
@@ -51,7 +73,10 @@ From the results, several patterns were observed:
 - Financial and receipt documents are more numeric and less descriptive  
 - TF-IDF is less effective for short or structured documents  
 - Simple rule-based classification works well for small datasets  
-- Visual detection highlights layout structure but is limited in precision  
+- Visual detection highlights layout structure but is limited in precision, especially for complex documents  
+- Dense documents such as academic posters produce many detected regions due to complex layouts  
+
+---
 
 ## Technologies Used
 
@@ -59,20 +84,29 @@ From the results, several patterns were observed:
 - OpenCV  
 - Tesseract OCR  
 - NLTK  
+- spaCy  
 - Scikit-learn  
 - Pandas  
 - Matplotlib  
 
+---
+
 ## Limitations
 
-This project focuses on demonstrating the pipeline rather than optimising performance.
+This project focuses on demonstrating a complete pipeline rather than optimising performance.
 
 - The dataset is small and not suitable for training machine learning models  
 - OCR errors can affect downstream NLP results  
-- The visual detection approach is basic and does not provide precise segmentation  
+- The visual detection approach is contour-based and not highly precise  
+- Complex document layouts (e.g. posters) produce many detected regions  
+- Named Entity Recognition may be affected by OCR noise  
+
+---
 
 ## Conclusion
 
 This project demonstrates how computer vision and NLP can be combined into a single pipeline to process and analyse documents.
 
-While the system works well for demonstrating the overall process, it also highlights the challenges of working with real-world document data, especially in terms of OCR quality and document variability.
+The inclusion of enhanced named entity recognition (spaCy) and structured region detection improves both text understanding and visual analysis.
+
+While the system works well for demonstrating the overall process, it also highlights the challenges of working with real-world document data, especially in terms of OCR quality, layout complexity and document variability.
