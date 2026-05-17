@@ -59,7 +59,7 @@ The pipeline is designed as a multi-modal system:
 - grouping text blocks, tables and visual components  
 
 ### Multi-modal integration
-- combining OCR text, NLP features, named entities, visual regions and segmentation results  
+- combining OCR text, named entities, visual analysis, and document structure information
 
 ### Final output
 - structured table summarising text, entities, visual features and document-level insights  
@@ -113,6 +113,14 @@ The addition of enhanced named entity recognition (spaCy) and structured region 
 Overall, the system works well as a complete pipeline, while also highlighting real-world challenges such as OCR quality, layout complexity and document variability.
 
 ---
+
+## References
+
+Stack Overflow discussions and online technical documentation were consulted during development and debugging.
+
+ChatGPT (OpenAI) was used for implementation guidance, debugging support, and explanation of concepts during development.
+
+All final testing, integration, analysis, and implementation decisions were completed by the student.
 
 ## Author
 
